@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			body{
+				margin: 0px;
+				font-size: 14px;
+				font-family:MicrosoftYaHei;
+				width: 100%;
+				overflow-x: hidden;
+				
+			}
+			.zctableContent{
+				margin-top: 5%;
+				width: 97%;
+				margin-left: 1.5%;
+				float: left;		
+				text-align:left;
+				color:#4a4a4a;
+			}
+		</style>
+		<link rel="stylesheet" href="css/bootstrap.min.css" />
+	</head>
+	<script type="text/javascript" src="js/jquery-1.11.3.js" ></script>
+	<script type="text/javascript" src="js/bootstrap.min.js" ></script>
+	<script type="text/javascript" src="js/ZcCreateTable.js" ></script>
+	<script type="text/javascript" src="js/laydate/laydate.js" ></script>
+	<body>
+		<div class="zctableContent row">
+			<div id="zctable" class="col-lg-12" ></div>
+		</div>
+		<script>
+			var datainto;
+			var title;
+			var colclassname;
+			var ZcTable;
+			$(function(){
+				$.ajax({
+					url : "http://10.2.9.177:8080/bcp/selector/list?selector=com.beecode.bcp.selector.test.Selector01",
+					
+					type: 'POST',
+					success : function(text) {
+						var obj = JSON.parse(text);
+						datainto = obj.data;
+						title = obj.title;
+						colclassname = obj.names;
+						ZcTable = $("#zctable").toCreateZcTable({
+							datainto:datainto,
+							colsname:title,
+							colclassname:colclassname,
+							"ispageshow":"true",
+						})
+						ZcTable.initTable();
+						ZcTable.setHideCol(["id"])
+						
+					},
+					error : function(jqXHR, textStatus,
+							errorThrown) {
+	
+					}
+				});
+				
+			})
+			
+		</script>
+	</body>
+</html>

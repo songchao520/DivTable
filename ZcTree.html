@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" href="css/bootstrap.min.css" />
+		<title></title>
+	</head>
+	<style>
+		a,img{border:0;}
+		.tree,.tree ul,.tree li{list-style:none;margin:0;padding:0;zoom: 1;}
+		.tree ul{margin-left:8px;}
+		.tree li a{color:#555;padding:.1em 7px .1em 27px;display:block;text-decoration:none;border:1px dashed #fff;background:url(img/icon-file.gif) 5px 50% no-repeat;}
+		.tree li a.tree-parent{background:url(img/icon-folder-open.gif) 5px 50% no-repeat;}
+		.tree li a.tree-parent-collapsed{background:url(img/icon-folder.gif) 5px 50% no-repeat;}
+		.tree li a:hover,.tree li a.tree-parent:hover,.tree li a:focus,.tree li a.tree-parent:focus,.tree li a.tree-item-active{color:#000;border:1px solid#eee;background-color:#fafafa;-moz-border-radius:4px;-webkit-border-radius:4px;border-radius:4px;}
+		.tree li a:focus,.tree li a.tree-parent:focus,.tree li a.tree-item-active{border:1px solid #e2f3fb;background-color:#f2fafd;}
+		.tree ul.tree-group-collapsed{display:none;}
+	</style>
+	<body>
+		<ul id="depts">
+			
+		</ul>
+		<button class="getid">获取ID</button>
+		<script type="text/javascript" src="js/jquery-1.11.3.js"></script>	
+		<script type="text/javascript" src="js/jquery.tree.js"></script>
+		<script type="text/javascript" src="js/ZcTreeCreate.js"></script>
+		<script type="text/javascript" src="js/bootstrap.min.js" ></script>
+		<script>
+			var Depts = [{"RECID":"1","LEVEL":"1","PARENTS":"","STDNAME":"久其"},{"RECID":"2","LEVEL":"2","PARENTS":"1","STDNAME":"资源部"},{"RECID":"3","LEVEL":"2","PARENTS":"1","STDNAME":"人力部"},{"RECID":"4","LEVEL":"3","PARENTS":"2","STDNAME":"后勤部"}]
+			var ZcTree = $("#depts").toCreateZcTree({
+		  		"id":"RECID",
+		  		"level":"LEVEL",
+		  		"parents":"PARENTS",
+		  		"stdname":"STDNAME"
+		  	});
+			ZcTree.initZcTree(Depts);
+			
+			$(function(){
+				$(".getid").click(function(){
+					alert(ZcTree.getStdNameById("2"))
+				})
+			})
+		</script>
+	</body>
+</html>

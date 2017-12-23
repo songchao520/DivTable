@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" href="css/bootstrap.min.css" />
+		<link rel="stylesheet" href="css/all_class.css" />
+	</head>
+	<body>
+		<button class="closebtn">11</button>
+		<button class="openbtn">22</button>
+		<script type="text/javascript" src="js/jquery-1.11.3.js" ></script>
+		<script type="text/javascript" src="js/bootstrap.min.js" ></script>
+		<script type="text/javascript" src="js/CreateModal.js" ></script>
+		<script type="text/javascript" src="js/ZcCreateTable.js" ></script>
+		<script>
+			$(function(){
+				var datainto = [["BH201","是否入账","2","3","是否入账123撒大声地是啊萨达是","是否入账","是否入账","是否入账","是否入账","是否入账","是否入账","是否入账","是否入账","是否入账","是否入账","是否入账","是否入账","是否入账","是否入账"],["BH202","是否入账","3","2","是否入账","是否入账","是否入账","是否入账","是否入账","是否入账","是否入账","是否入账","是否入账","是否入账","是否入账","是否入账","是否入账","是否入账","是否入账"],["BH203","是否入账","4","5","是否入账","是否入账","是否入账","是否入账","是否入账","是否入账","是否入账","是否入账","是否入账","是否入账","是否入账","是否入账","是否入账","是否入账","是否入账"]];
+				
+				var modal = $.fn.toCreateModal();
+				var modalid = modal.initUpdateModal("修改弹框","Customlarge","<div style='width:100%;margin-top:10px;'><div id='sjz' style='width:100%;height:500px;overflow-y: hidden;'></div></div>","33","确认","22","取消");
+				$("#"+modalid+" #sjz").load("floor.html");
+				return false;
+				/*modal.initmodal({
+					"type":'default',
+					"bodyhead":"成功提示框",	
+					"bodybody":"<div style='text-align: center;padding-top:10px;'>你好</div>",	
+				});*/
+				var modalids = modal.initAlertModal("增量导入成功")
+				//var modalidss = modal.initWarningModal("<div id='22222'>增量导入成功</div>","<div id='22222'>122</div>","cc","ss");
+				var modalidsss = modal.initDangerModal("增量导入成功","222","cc","ss");
+				modal.AddClickClose(modalidsss,"closeone")
+				$(".closebtn").click(function(){
+					modal.destroyModal(modalidsss);
+				})
+				$(".openbtn").click(function(){
+					$("#"+modalidsss).modal("show")
+				})
+				
+				/*var modalid = modal.initmodal({
+					"topStyle":"text-align: center;height:50px;line-height:27px;border-bottom: 1px solid #cccccc;font-size:16px;",
+					"titleShow":"修改",
+					"type":'Customlarge',
+					"bodybody":"<div style='width:100%;margin-top:10px;'><div class='tables'></div></div>",
+					"footStyle":"border-top: 1px solid #cccccc;font-size:16px;height:50px;",
+					"isCloseAuto":"false",
+					"footShow":"<div style='float:right;padding-left:50px;padding-right:50px;' class='font font_sl font_ft'>确认</div><div style='float:right;height:30px;margin-top:-5px;width:1px;background:#eaeaea;'></div><div style='float:right;padding-left:50px;padding-right:50px;' class='font font_lg font_ft' data-dismiss='modal' >取消</div>"
+				});*/
+				var modalid = modal.initUpdateModal("修改弹框","Customlarge","<div style='width:100%;margin-top:10px;'><div class='tables'></div></div>","33","确认","22","取消");
+				var ZcTable = $("#"+modalid+" .tables").toCreateZcTable({
+					'colsname':["资产编号","是否入账","价值","数量","是否入账1","是否入账2","是否入账3","是否入账4","是否入账5","是否入账6","是否入账7","是否入账8","是否入账9","是否入账10","是否入账11","是否入账12","是否入账13","是否入账14","是否入账15"],
+					'colclassname':["zicbh","sfrz","jiaz","shul","sfrz1","sfrz2","sfrz3","sfrz4","sfrz5","sfrz6","sfrz7","sfrz8","sfrz9","sfrz10","sfrz11","sfrz12","sfrz13","sfrz14","sfrz15"],
+					//'rowsnumber':"10",
+					'isShowSum':'true',
+					"isShowCheckbox":"false",
+					"datainto":datainto,
+					//"classdiv":"zctableContent",
+					"evenbackgroundcolor":"#EBEBEB",
+					"oddbackgroundcolor":"#FFFFFF",
+					//"contentborder":"true",
+					//"ispiaofu":"true",
+					"ispageshow":"true",
+					
+					//"isauto":"true"
+				});
+				ZcTable.initTable();
+				
+				
+				//alert(modalid)
+				//$("#"+modalid).modal('hide');
+			})
+		</script>
+	</body>
+</html>

@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+	</head>
+	<link rel="stylesheet" href="css/bootstrap.min.css" />
+	<style>
+		body{
+			margin: 0px;
+			font-size: 14px;
+			font-family:MicrosoftYaHei;
+			width: 100%;
+			overflow-x: hidden;
+			
+			
+		}
+		.zctableContent{
+			margin-top: 5%;
+			width: 97%;
+			margin-left: 1.5%;
+			float: left;		
+			text-align:left;
+			color:#4a4a4a;
+		}
+		.fontclass{
+			color:red;
+			font-weight: 700;
+		}
+	</style>
+	<body>
+		<div class="zctableContent ">
+			<div id="zctable" class="col-lg-12" ></div>
+		</div>
+		<div id="pageshow" class="zctableContent row" style="margin-top: 0px;">
+			
+		</div>
+		<div class="zctableContent row">
+			<div id="zctable2" class="col-lg-12"></div>
+		</div>
+		<div class="zctableContent row">
+			<div id="zctable3" class="col-lg-12"></div>
+		</div>
+		<button id="closes"> 22 </button>
+		
+	</body>
+	<script type="text/javascript" src="js/jquery-1.11.3.js" ></script>
+	<script type="text/javascript" src="js/bootstrap.min.js" ></script>
+	<script type="text/javascript" src="js/ZcCreateTable.js" ></script>
+	<script type="text/javascript" src="js/laydate/laydate.js" ></script>
+	
+
+	<script>
+		var datainto = [["BH201","是否入账","2","3","是否入账123撒大声地是啊萨达是","是否入账","是否入账","是否入账","是否入账","是否入账"],["BH202","是否入账","3","2","是否入账","是否入账","是否入账","是否入账","是否入账","是否入账"],["BH203","是否入账","4","5","是否入账","是否入账","是否入账","是否入账","是否入账","是否入账"]];
+		var colsdatas = [{"colsname":"资产编号","colclassname":"zicbh","width":"140"},{"colsname":"是否入账","colclassname":"sfrz","width":"140"},{"colsname":"价值","colclassname":"jiaz","width":"140"},{"colsname":"数量","colclassname":"shul","width":"140"}]
+		$(function(){
+			var ZcTable = $("#zctable").toCreateZcTable({
+				'colsname':["资产编号","是否入账","价值","数量","是否入账1","是否入账2","是否入账3","是否入账4","是否入账5","是否入账6"],
+				'colclassname':["zicbh","sfrz","jiaz","shul","sfrz1","sfrz2","sfrz3","sfrz4","sfrz5","sfrz6"],
+				'colsdatas':colsdatas,
+				'rowsnumber':"50",
+				'isShowSum':'true',
+				"isShowCheckbox":"true",
+				"datainto":datainto,
+				//"classdiv":"zctableContent",
+				"evenbackgroundcolor":"#EBEBEB",
+				"oddbackgroundcolor":"#FFFFFF",
+				//"contentborder":"true",
+				//"ispiaofu":"true",
+				"ispageshow":"true",
+				"pageParent":"#pageshow",
+				"pageTable":"#zctable"
+				//"isauto":"true"
+			});
+			
+			ZcTable.initTable();
+			ZcTable.setEditCol(["sfrz"],"custom");
+			ZcTable.setEditHtmlCustom("sfrz","<div class='thisdiv' style='background-color:red'></div>",function(thisobj,value){
+				thisobj.children(".thisdiv").text(2);
+			})
+			$("#closes").click(function(){
+				ZcTable.closeEditCustom("232323");
+			})
+			ZcTable.setupZeroTr("show");
+			ZcTable.setZeroEditCancel();
+			ZcTable.setSelectstate("true");
+			ZcTable.setIconTolist('<span class="glyphicon addsss" style="cursor:pointer">新增</span><span class="glyphicon" style="cursor:pointer;margin-left:5px">修改</span><span class="glyphicon removesss" style="cursor:pointer;margin-left:5px">删除</span>');
+			$(document).on("click",".addsss",function(){
+				var thisindex = ZcTable.getTableData();
+				alert(JSON.stringify(thisindex));
+				
+			})
+			ZcTable.setImgSrcEdit('img/icon_ss.png');
+			ZcTable.setEditCol(["jiaz","shul"],"date");
+			ZcTable.AddCheckBoxAllClick(function(){
+				alert(4);
+			})
+			ZcTable.AddIconEditClick(function(){
+				alert(3);
+			})
+			ZcTable.setWidthCol([{"colclassname":"jiaz","width":120}])
+			ZcTable.setShowOverCol("false");
+			ZcTable.setShowOverCol(["jiaz"]);
+			ZcTable.setRowsDataInfo([{"zicbh":"BH204","shul":"20"},{"zicbh":"BH205","jiaz":"30"}],null);
+			var indexs = ZcTable.insertDataforindex([{"zicbh":"BH204","shul":"20"},{"zicbh":"BH205","jiaz":"30"}],6);
+			ZcTable.AddCellEditSuccess(function(){
+				var obj = ZcTable.getEditObject();
+				alert(JSON.stringify(obj));
+			});
+			ZcTable.setHideCol(["zicbh"])
+			//alert(indexs);
+		})
+		
+		var dataintos = [["BH201","是否入账","2","3","是否入账123撒大声地是啊萨达是","是否入账","是否入账","是否入账","是否入账","是否入账","是否入账","是否入账","是否入账","是否入账","是否入账","是否入账","是否入账","是否入账","是否入账"],["BH202","是否入账","3","2","是否入账","是否入账","是否入账","是否入账","是否入账","是否入账","是否入账","是否入账","是否入账","是否入账","是否入账","是否入账","是否入账","是否入账","是否入账"],["BH203","是否入账","4","5","是否入账","是否入账","是否入账","是否入账","是否入账","是否入账","是否入账","是否入账","是否入账","是否入账","是否入账","是否入账","是否入账","是否入账","是否入账"]];
+		var colsdatas = [{"colsname":"资产编号","colclassname":"zicbh","width":"140"},{"colsname":"是否入账","colclassname":"sfrz","width":"140"},{"colsname":"价值","colclassname":"jiaz","width":"140"},{"colsname":"数量","colclassname":"shul","width":"140"}]
+		$(function(){
+			var ZcTable2 = $("#zctable2").toCreateZcTable({
+				'colsname':["资产编号","是否入账","价值","数量","是否入账1","是否入账2","是否入账3","是否入账4","是否入账5","是否入账6","是否入账7","是否入账8","是否入账9","是否入账10","是否入账11","是否入账12","是否入账13","是否入账14","是否入账15"],
+				'colclassname':["zicbh","sfrz","jiaz","shul","sfrz1","sfrz2","sfrz3","sfrz4","sfrz5","sfrz6","sfrz7","sfrz8","sfrz9","sfrz10","sfrz11","sfrz12","sfrz13","sfrz14","sfrz15"],
+				'colsdatas':colsdatas,
+				'rowsnumber':"20",
+				'isShowSum':'true',
+				"isShowCheckbox":"true",
+				"datainto":dataintos,
+				//"classdiv":"zctableContent",
+				"evenbackgroundcolor":"#EBEBEB",
+				"oddbackgroundcolor":"#FFFFFF",
+				//"contentborder":"true",
+				//"ispiaofu":"true",
+				"ispageshow":"true",
+				//"pageParent":"#pageshow",
+				//"pageTable":"#zctable"
+				//"isauto":"true"
+			});
+			
+			ZcTable2.initTable();
+			ZcTable2.setEditCol(["sfrz"],"custom");
+			ZcTable2.setEditCol(["jiaz"]);
+			ZcTable2.AddIconEditClick(function(thisobj,obj){
+				alert(JSON.stringify(obj));
+			})
+			ZcTable2.setEditHtmlCustom("sfrz","<div ></div>",function(thistable,text,obj){
+				alert(JSON.stringify(obj));
+			})
+			$("#closes").click(function(){
+				ZcTable2.closeEditCustom("232323");
+			})
+		})
+		
+	</script>
+</html>

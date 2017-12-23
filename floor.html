@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>jq 楼层滚动效果</title>
+        <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+        <style>
+            * {
+                margin: 0;
+                padding: 0;
+            }
+
+            i {
+                font-style: normal;
+            }
+
+            ul,
+            li,
+            dl,
+            ol{
+                list-style: none;
+            }
+
+            #LoutiNav {
+                border: 1px solid gray;
+                width: 30px;
+                position: fixed;
+                top: 150px;
+                left: 50px;
+                display: none;
+            }
+
+            #LoutiNav li {
+                width: 30px;
+                height: 30px;
+                border-bottom: 1px solid gray;
+                line-height: 30px;
+                text-align: center;
+                cursor: pointer;
+            }
+
+            #LoutiNav span {
+                display: none;
+            }
+
+            #LoutiNav .active {
+                background: white;
+                color: darkred;
+            }
+
+            #LoutiNav li:hover span {
+                display: block;
+                font-size: 12px;
+                background: darkred;
+                color: white;
+            }
+
+            #LoutiNav li:hover i {
+                display: none;
+            }
+
+            #goTop {
+                width: 40px;
+                height: 40px;
+                line-height: 40px;
+                text-align: center;
+                background: gray;
+                position: fixed;
+                bottom: 30px;
+                right: 30px;
+                cursor: pointer;
+                border-radius: 5px;
+                display: none;
+            }
+
+            #goTop:hover {
+                background: darkred;
+                color: white;
+            }
+
+            #goTop:hover span {
+                display: block;
+            }
+
+            #erweima {
+                width: 130px;
+                height: 130px;
+                background: palegreen;
+                display: none;
+                position: absolute;
+                right: 46px;
+                bottom: 5px;
+                line-height: 130px;
+                text-align: center;
+                font-size: 20px;
+                border-radius: 10px;
+            }
+
+            #header {
+                height: 200px;
+                background: palegoldenrod;
+                text-align: center;
+                line-height: 200px;
+                font-size: 72px;
+                margin: 0 auto;
+            }
+
+            .louceng {
+               
+                text-align: center;
+                line-height: 610px;
+                font-size: 120px;
+                margin: 0 auto;
+            }
+        </style>
+    </head>
+
+    <body>
+		<div id="showscroll" style="overflow-y: scroll;">
+	        <ul id="LoutiNav">
+	            <li class="active"><i>1F</i><span>服饰</span></li>
+	            <li><i>2F</i><span>美妆</span></li>
+	            <li><i>3F</i><span>手机</span></li>
+	            <li style="border-bottom: none;"><i>4F</i><span>家电</span></li>
+	        </ul>
+	        <div id="goTop">
+	            <span id="erweima">我是二维码</span> Top
+	        </div>
+	        <div id="header">头部</div>
+	        <div id="main">
+	            <div class="louceng" style="background: papayawhip;">服饰</div>
+	            <div class="louceng" style="background: peachpuff;">美妆</div>
+	            <div class="louceng" style="background: peru;">手机</div>
+	            <div class="louceng" style="background: pink;">家电</div>
+	        </div>
+	    </div>
+        <script>
+            var oNav = $('#LoutiNav'); //导航壳
+            var aNav = oNav.find('li'); //导航
+            var aDiv = $('#main .louceng'); //楼层
+            var oTop = $('#goTop'); //回到顶部
+            $("#showscroll").css("height",$("#showscroll").parent().height());
+            $(".louceng").css("height",$("#showscroll").parent().height());
+            $("#showscroll").scroll(function() {
+                    //可视窗口高度
+                    var winH = $("#showscroll").height();
+                    //鼠标滚动的距离
+                    var iTop = $("#showscroll").scrollTop();
+                    //console.log(iTop);
+                    // console.log();
+                    if(iTop >= $("#header").height()) {
+                        oNav.fadeIn();
+                        oTop.fadeIn();
+                        //鼠标滑动样式改变
+                        aDiv.each(function() {
+                            if(iTop+winH - ($(this).index()+1)*($(".louceng").height()*1)-200 > 0) {
+                                aNav.removeClass('active');
+                                aNav.eq($(this).index()).addClass('active');
+                            }
+                        })
+                    } else {
+                        oNav.fadeOut();
+                        oTop.fadeOut();
+                    }
+                })
+            //点击回到当前楼层
+            aNav.click(function() {
+                var t = ($(this).index()+1)*($(".louceng").height()*1)-$("#showscroll").parent().height()*1+200;
+                $('#showscroll').animate({
+                    "scrollTop": t
+                }, 500);
+                $(this).addClass('active').siblings().removeClass('active');
+            });
+            //回到顶部
+            oTop.click(function() {
+                $('#showscroll').animate({
+                    "scrollTop": 0
+                }, 500)
+            })
+        </script>
+    </body>
+</html>

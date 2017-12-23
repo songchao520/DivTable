@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+	</head>
+	<link rel="stylesheet" href="css/bootstrap.min.css" />
+	<style>
+		body{
+			margin: 0px;
+			font-size: 14px;
+			font-family:MicrosoftYaHei;
+			width: 100%;
+			overflow: hidden;
+		}
+		.zctableContent{
+			margin-top: 5%;
+			width: 97%;
+			margin-left: 1.5%;
+			float: left;		
+			text-align:left;
+			color:#4a4a4a;
+		}
+		.zctableContent2{
+			margin-top: 5%;
+			width: 97%;
+			margin-left: 1.5%;
+			float: left;		
+			text-align:left;
+			color:#4a4a4a;
+		}
+	</style>
+	<body>
+		<div class="zctableContent">
+			<div id="zctable"></div>
+		</div>
+		<div class="zctableContent2">
+			<div id="zctable2"></div>
+		</div>
+	</body>
+	<script type="text/javascript" src="js/jquery-1.11.3.js" ></script>
+	<script type="text/javascript" src="js/createTable.js" ></script>
+	<script type="text/javascript" src="js/bootstrap.min.js" ></script>
+
+	<script>
+		var datainto = [["BH201","是否入账","2","3","是否入账","是否入账","是否入账","是否入账","是否入账","是否入账","是否入账","是否入账","是否入账","是否入账","是否入账","是否入账","是否入账","是否入账","是否入账"],["BH202","是否入账","3","2","是否入账","是否入账","是否入账","是否入账","是否入账","是否入账","是否入账","是否入账","是否入账","是否入账","是否入账","是否入账","是否入账","是否入账","是否入账"],["BH203","是否入账","4","5","是否入账","是否入账","是否入账","是否入账","是否入账","是否入账","是否入账","是否入账","是否入账","是否入账","是否入账","是否入账","是否入账","是否入账","是否入账"]];
+		$(function(){
+			var ZcTable = $("#zctable").toCreateZcTable({
+				'colsname':["资产编号","是否入账","价值","数量","是否入账1","是否入账2","是否入账3","是否入账4","是否入账5","是否入账6","是否入账7","是否入账8","是否入账9","是否入账10","是否入账11","是否入账12","是否入账13","是否入账14","是否入账15"],
+				'colclassname':["zicbh","sfrz","jiaz","shul","sfrz1","sfrz2","sfrz3","sfrz4","sfrz5","sfrz6","sfrz7","sfrz8","sfrz9","sfrz10","sfrz11","sfrz12","sfrz13","sfrz14","sfrz15"],
+				'rowsnumber':"6",
+				'isShowSum':'true',
+				"datainto":datainto,
+				"classdiv":"zctableContent",
+				"islinkbootstrap":"true",
+				"evenbackgroundcolor":"#EBEBEB",
+				"oddbackgroundcolor":"#FFFFFF"
+			});
+			ZcTable.initTable();
+			ZcTable.setSumCol(["jiaz","数量"]);
+			ZcTable.setEditCol(["sfrz1","sfrz","价值","jiaz","zicbh"]);
+			ZcTable.cancelColEdit(["sfrz1"]);
+			ZcTable.setColposition({"jiaz":"right","shul":"right"});
+			//ZcTable.setPlusMethod("addclass");
+			ZcTable.setHideCol(["jiaz","sfrz"])
+			ZcTable.setShowCol(["jiaz"]);
+			ZcTable.SpecifyId("zicbh");
+			ZcTable.setSortCol(["shul","价值"]);
+			console.log(JSON.stringify(ZcTable.getColDataInfoById({"BH202":["sfrz","shul"],"BH201":["jiaz","shul"]})))
+			console.log(JSON.stringify(ZcTable.getRowsDataInfoById(["BH202","BH201"])))
+			console.log(JSON.stringify(ZcTable.getAllData()))
+			ZcTable.setColDataInfoById({"BH202":{"shul":"20"},"BH201":{"jiaz":"30"}});
+			ZcTable.setRowsDataInfo([{"zicbh":"BH204","shul":"20"},{"zicbh":"BH205","jiaz":"30"}],null);
+			ZcTable.setHtmlColByIndex({"5":{"jiaz":"<span style='color:red'>20</span>"},"4":{"jiaz":"30"}});
+			ZcTable.setHtmlColByID({"BH202":{"jiaz":"<span style='color:red'>20</span>"},"BH201":{"jiaz":"30"}});
+			
+			
+			var ZcTable2 = $("#zctable2").toCreateZcTable({
+				'colsname':["资产编号","是否入账","价值","数量","是否入账1","是否入账2","是否入账3","是否入账4","是否入账5","是否入账6","是否入账7","是否入账8","是否入账9","是否入账10","是否入账11","是否入账12","是否入账13","是否入账14","是否入账15"],
+				'colclassname':["zicbh","sfrz","jiaz","shul","sfrz1","sfrz2","sfrz3","sfrz4","sfrz5","sfrz6","sfrz7","sfrz8","sfrz9","sfrz10","sfrz11","sfrz12","sfrz13","sfrz14","sfrz15"],
+				'rowsnumber':"6",
+				'isShowSum':'true',
+				"datainto":datainto,
+				"classdiv":"zctableContent",
+				"islinkbootstrap":"true",
+				"evenbackgroundcolor":"#EBEBEB",
+				"oddbackgroundcolor":"#FFFFFF",
+				"isauto":"true"
+			});
+			ZcTable2.initTable();
+			ZcTable2.setSumCol(["jiaz","数量"]);
+			ZcTable2.setEditCol(["sfrz1","sfrz","价值","jiaz","zicbh"]);
+			ZcTable2.cancelColEdit(["sfrz1"]);
+			ZcTable2.setColposition({"jiaz":"right","shul":"right"});
+			//ZcTable.setPlusMethod("addclass");
+			ZcTable2.setHideCol(["jiaz","sfrz"])
+			ZcTable2.setShowCol(["jiaz"]);
+			ZcTable2.SpecifyId("zicbh");
+			ZcTable2.setSortCol(["shul","价值"]);
+			console.log(JSON.stringify(ZcTable2.getColDataInfoById({"BH202":["sfrz","shul"],"BH201":["jiaz","shul"]})))
+			console.log(JSON.stringify(ZcTable2.getRowsDataInfoById(["BH202","BH201"])))
+			console.log(JSON.stringify(ZcTable2.getAllData()))
+			ZcTable2.setColDataInfoById({"BH202":{"shul":"20"},"BH201":{"jiaz":"30"}});
+			ZcTable2.setRowsDataInfo([{"zicbh":"BH204","shul":"20"},{"zicbh":"BH205","jiaz":"30"}],[4,5]);
+			ZcTable2.setHtmlColByIndex({"5":{"jiaz":"<span style='color:red'>20</span>"},"4":{"jiaz":"30"}});
+			ZcTable2.setHtmlColByID({"BH202":{"jiaz":"<span style='color:red'>20</span>"},"BH201":{"jiaz":"30"}});
+		
+		})
+	</script>
+</html>

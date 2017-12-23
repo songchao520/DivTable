@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" href="css/bootstrap.min.css" />
+	</head>
+	<body>
+		<div class="zctableContent row">
+			<div id="pageisshow" class="col-lg-12"></div>
+		</div>
+		<div class="zctableContent row">
+			<div id="pageisshow2" class="col-lg-12"></div>
+		</div>
+		<script type="text/javascript" src="js/jquery-1.11.3.js" ></script>
+		<script type="text/javascript" src="js/bootstrap.min.js" ></script>
+		<script type="text/javascript" src="js/PageControl.js" ></script>
+		<script>
+			$(function(){
+				var pageC = $("#pageisshow").toCreatePageControl({
+					"pagesize":"10",
+					"totalnumber":"30",
+					"currentpage":"1"
+				});
+				pageC.initPageControl();
+				pageC.AddClickBtn(function(currentpage,pagesize,totalnum){
+					alert(currentpage+" "+pagesize+" "+totalnum);
+				})
+				var pageC2 = $("#pageisshow2").toCreatePageControl({
+					"pagesize":"10",
+					"totalnumber":"900",
+					"currentpage":"5"
+				});
+				pageC2.initPageControl();
+				pageC2.initPageControl({
+					"totalnumber":"90",
+					"currentpage":"5"
+				});
+			})
+		</script>
+	</body>
+</html>
